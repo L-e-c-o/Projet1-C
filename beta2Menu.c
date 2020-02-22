@@ -1,7 +1,4 @@
 #include "beta2.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void afficherMenu(void)
 {
@@ -73,7 +70,7 @@ int menuLister(void)
 	char *choix;
 	int taille = 2;
 	int choixFinal=0;
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+-----------------------------------------------------------+\n");
 	printf("| 1----------- Lister tous les élèves            -----------|\n");
 	printf("| 2----------- Lister les élèves d'une promotion -----------|\n");
@@ -98,7 +95,7 @@ int menuTrie(void)
 	int taille = 2;
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+-----------------------------------------------------------+\n");
 	printf("| 1------------------ Trier par nom       ------------------|\n");
 	printf("| 2------------------ Trier par prenom    ------------------|\n");
@@ -124,7 +121,7 @@ int menuTriePromo(void)
 	int taille = 2;
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+-----------------------------------------------------------+\n");
 	printf("| 1------------------ Trier par nom       ------------------|\n");
 	printf("| 2------------------ Trier par prenom    ------------------|\n");
@@ -149,7 +146,7 @@ int menuAjouter(void)
 	int taille = 2;
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+---------------------------------------------------------------+\n");
 	printf("| 1----------- Ajouter une note à une promotion   --------------|\n");
 	printf("| 2----------- Ajouter une note à tous les élèves --------------|\n");
@@ -173,7 +170,7 @@ int menuMatiere(void)
 	int taille = 2;
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+-----------------------------------------------------------+\n");
 	printf("|              			    MATIERE                         |\n");
 	printf("+-----------------------------------------------------------+\n");
@@ -201,7 +198,7 @@ int menuChargerSauvegarder(void)
 	int taille = 2;
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+-----------------------------------------------------------+\n");
 	printf("| 1---------------------- Charger     ----------------------|\n");
 	printf("| 2---------------------- Sauvegarder ----------------------|\n");
@@ -222,7 +219,8 @@ int menuChargerSauvegarder(void)
 void quitter(eleve** tabEleves, int compteurTab)
 {
 	freeTabEleves(tabEleves,compteurTab);
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	printf("                                                           **     **     **   *******   ******** **      **   *******   ** *******  \n"); 
   	printf("                                                          ****   /**    /**  /**////** /**///// /**     /**  **/////** /**/**////** \n");
    	printf("                                                         **//**  /**    /**  /**   /** /**      /**     /** **     //**/**/**   /** \n");
@@ -231,7 +229,9 @@ void quitter(eleve** tabEleves, int compteurTab)
 	printf("                                                      /**//////**/**    /**  /**  //** /**        //****   //**     ** /**/**  //** \n");
 	printf("                                                     /**      /**//*******   /**   //**/********   //**     //*******  /**/**   //**\n");
 	printf("                                                     //       //  ///////    //     // ////////     //       ///////   // //     // \n");
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	pause();
+	clear();
+	exit(0);
 }
 void save(char* filename, eleve **tabEleves, int compteurTab)
 {

@@ -1,7 +1,4 @@
 #include "beta2.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void listerEleves(eleve **tabEleves, int compteurTab)
 {
@@ -9,7 +6,7 @@ void listerEleves(eleve **tabEleves, int compteurTab)
 	{
 		if(i==0)
 		{
-			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+			clear();
 		}	
 		printf("%d\n",compteurTab );
 		printf("+----------------------------+\n");
@@ -61,7 +58,7 @@ int details(eleve **tabEleves, int compteurTab)
 			pause();
 			return 1;
 		}
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		clear();
 		printf("+------------------------------------+\n");
 		printf("  identifiant : %d           \n", tabEleves[i]->id);
 		printf("  nom :         %s           \n", tabEleves[i]->nom);
@@ -225,7 +222,7 @@ int listerPromo(eleve **tabEleves, int compteurTab)
 			}
 				if(i==0)
 				{ 
-				printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+					clear();
 				}
 				printf("+----------------------------+\n");
 				printf("  promotion :       %s        \n", tabPromo[i]->promotion);
@@ -396,7 +393,7 @@ int trie(eleve **tabEleves, int nb, int compteurTab)
 	{
 		if(i==0)
 		{
-			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+			clear();
 		}
 		printf("+---------------------------------+\n");
 		printf("  identifiant : %d           \n", tabEleves[i]->id);

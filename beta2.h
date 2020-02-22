@@ -1,5 +1,9 @@
 #ifndef _BETA2_H_
-#define _BETA2_H_
+#define _BETA2_H_ 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct matieres matieres;
 struct matieres
@@ -44,6 +48,7 @@ int verifchiffreEtLettre(char *string);
 int verifId(eleve **tabEleves, int choixId, int compteurTab);
 int verifPromo(eleve **tabEleves,char *buffPromo, int compteurTab);
 void pause(void);
+void clear(void);
 double moyenne(eleve *tabEleves);
 void freeTabEleves(eleve** tabEleves, int compteurTab);
 //----------------Eleves-------------------------------

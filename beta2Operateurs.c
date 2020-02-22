@@ -1,7 +1,4 @@
 #include "beta2.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 int saisir(char *chaine, int longueur)
 {
@@ -94,9 +91,17 @@ void pause(void)
 	buff=(char*)malloc(2*sizeof(char));
 	printf("Appuyez sur entrer pour continuer\n");
 	saisir(buff, 2);
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	free(buff);
 	buff=NULL;
+}
+void clear(void)
+{
+#ifdef _WIN32
+    system("cls");
+#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+    system("clear");
+#endif
 }
 double moyenne(eleve *tabEleves)
 {
@@ -154,7 +159,7 @@ eleve* createEleve(int compteurId)
 	eleve *newEleve;
 	newEleve=malloc(sizeof(eleve));
 	newEleve->id=compteurId;
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+--------------------------------------------------+\n");
 	printf("Entrer le nom de l'élève :           ");
 	saisir(bufferNom, taille);
@@ -298,7 +303,7 @@ int modif(eleve **tabEleves, int compteurTab)
 		pause();
 		return 1;
 	}
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	clear();
 	printf("+-----------------------------------------+\n");
 	printf("nom actuel : %s\n",tabEleves[i]->nom);
 	printf("Entrer le nouveau nom de l'élève (entrée = defaut) : ");
@@ -459,7 +464,7 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 				{ 	
 					tabEleves[i]->matieres.nbNoteProg++;
 					tabEleves[i]->matieres.programmation=realloc(tabEleves[i]->matieres.programmation,tabEleves[i]->matieres.nbNoteProg*sizeof(float));
-					printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 					printf("Matière :        Programmation\n");
@@ -489,7 +494,7 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 				{ 	
 					tabEleves[i]->matieres.nbNoteLinux++;
 					tabEleves[i]->matieres.Linux=realloc(tabEleves[i]->matieres.Linux,tabEleves[i]->matieres.nbNoteLinux*sizeof(float));
-					printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 					printf("Matière :        Linux\n");
@@ -519,7 +524,7 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 				{ 	
 					tabEleves[i]->matieres.nbNoteSecu++;
 					tabEleves[i]->matieres.secu=realloc(tabEleves[i]->matieres.secu,tabEleves[i]->matieres.nbNoteSecu*sizeof(float));
-					printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 					printf("Matière :        Sécurité informatique\n");
@@ -549,7 +554,7 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 				{ 	
 					tabEleves[i]->matieres.nbNoteReseau++;
 					tabEleves[i]->matieres.reseau=realloc(tabEleves[i]->matieres.reseau,tabEleves[i]->matieres.nbNoteReseau*sizeof(float));
-					printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 					printf("Matière :        Réseau\n");
@@ -588,7 +593,7 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 			{	
 				tabEleves[i]->matieres.nbNoteProg++;
 				tabEleves[i]->matieres.programmation=realloc(tabEleves[i]->matieres.programmation,tabEleves[i]->matieres.nbNoteProg*sizeof(float));
-				printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 				printf("Matière :        Programmation\n");
@@ -613,7 +618,7 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 			{	
 				tabEleves[i]->matieres.nbNoteLinux++;
 				tabEleves[i]->matieres.Linux=realloc(tabEleves[i]->matieres.Linux,tabEleves[i]->matieres.nbNoteLinux*sizeof(float));
-				printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 				printf("Matière :        Linux\n");
@@ -638,7 +643,7 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 			{	
 				tabEleves[i]->matieres.nbNoteSecu++;
 				tabEleves[i]->matieres.secu=realloc(tabEleves[i]->matieres.secu,tabEleves[i]->matieres.nbNoteSecu*sizeof(float));
-				printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 				printf("Matière :        Sécurité informatique\n");
@@ -663,7 +668,7 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 			{	
 				tabEleves[i]->matieres.nbNoteReseau++;
 				tabEleves[i]->matieres.reseau=realloc(tabEleves[i]->matieres.reseau,tabEleves[i]->matieres.nbNoteReseau*sizeof(float));
-				printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
 				printf("Matière :        Réseau\n");
