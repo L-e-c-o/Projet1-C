@@ -51,7 +51,6 @@ int main (void)
 					{ 	//====Trier par nom==== 
 						//listerEleves(tabEleves, compteurTab);
 						extract(tabEleves, 1, compteurTab);
-					
 					}	
 					if(choixSousMenu==2)
 					{ 	//====Trier par prenom====
