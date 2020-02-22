@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+int bolean;
 
 typedef struct matieres matieres;
 struct matieres
@@ -49,6 +50,7 @@ int verifId(eleve **tabEleves, int choixId, int compteurTab);
 int verifPromo(eleve **tabEleves,char *buffPromo, int compteurTab);
 void pause(void);
 void clear(void);
+void jump(int n);
 double moyenne(eleve *tabEleves);
 void freeTabEleves(eleve** tabEleves, int compteurTab);
 //----------------Eleves-------------------------------

@@ -1,4 +1,5 @@
 #include "beta2.h"
+int bolean;
 
 int main (void)
 {	
@@ -19,6 +20,7 @@ int main (void)
 			if(choixMenu==1)
 			{ 
 				//####Lister les promotions####
+				bolean=0;
 				listerPromo(tabEleves, compteurTab);
 			}
 			if(choixMenu==2)
@@ -50,14 +52,17 @@ int main (void)
 					if(choixSousMenu==1)
 					{ 	//====Trier par nom==== 
 						//listerEleves(tabEleves, compteurTab);
+						bolean=1;
 						extract(tabEleves, 1, compteurTab);
 					}	
 					if(choixSousMenu==2)
 					{ 	//====Trier par prenom====
+						bolean=1;
 						extract(tabEleves, 2, compteurTab);
 					}	
 					if(choixSousMenu==3)
 					{ 	//====Trier par moyenne====
+						bolean=1;
 						extract(tabEleves, 4, compteurTab);
 					}			
 			    }
@@ -85,6 +90,7 @@ int main (void)
 				choixSousMenu=menuAjouter();
 				if(choixSousMenu==1)
 				{	//----Par Promotion----
+					bolean=1;
 					ajouterNote(tabEleves, compteurTab);
 				}
 				if(choixSousMenu==2)

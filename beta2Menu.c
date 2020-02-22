@@ -2,7 +2,7 @@
 
 void afficherMenu(void)
 {
-	printf("\n\n\n\n");
+	jump(4);
 	printf("                                                    ********  ********  ******** ********** **   *******   ****     ** ****     **     **     ** *******   ********  \n");
 	printf("                                                   **//////**/**/////  **////// /////**/// /**  **/////** /**/**   /**/**/**   /**    ****   /**/**////** /**/////   \n");
 	printf("                                                  **      // /**      /**           /**    /** **     //**/**//**  /**/**//**  /**   **//**  /**/**   /** /**        \n");
@@ -71,10 +71,11 @@ int menuLister(void)
 	int taille = 2;
 	int choixFinal=0;
 	clear();
-	printf("+-----------------------------------------------------------+\n");
-	printf("| 1----------- Lister tous les élèves            -----------|\n");
-	printf("| 2----------- Lister les élèves d'une promotion -----------|\n");
-	printf("+-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n");
+	jump(25);
+	printf("                                                                      +-----------------------------------------------------------+\n");
+	printf("                                                                      | 1----------- Lister tous les élèves            -----------|\n");
+	printf("                                                                      | 2----------- Lister les élèves d'une promotion -----------|\n");
+	printf("                                                                      +-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n");
 	printf("Entrez votre choix : ");
 	choix =(char*)malloc(taille*sizeof(char));	
 	saisir(choix, taille);
@@ -96,12 +97,13 @@ int menuTrie(void)
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
 	clear();
-	printf("+-----------------------------------------------------------+\n");
-	printf("| 1------------------ Trier par nom       ------------------|\n");
-	printf("| 2------------------ Trier par prenom    ------------------|\n");
-	printf("| 3------------------ Trier par promotion ------------------|\n");
- 	printf("| 4------------------ Trier par moyenne   ------------------|\n");
-	printf("+-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n");
+	jump(25);
+	printf("                                                                      +-----------------------------------------------------------+\n");
+	printf("                                                                      | 1------------------ Trier par nom       ------------------|\n");
+	printf("                                                                      | 2------------------ Trier par prenom    ------------------|\n");
+	printf("                                                                      | 3------------------ Trier par promotion ------------------|\n");
+ 	printf("                                                                      | 4------------------ Trier par moyenne   ------------------|\n");
+	printf("                                                                      +-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n");
 	printf("Entrez votre choix : ");	
 	saisir(choix, taille);
 	choixFinal = atoi(choix);
@@ -122,11 +124,12 @@ int menuTriePromo(void)
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
 	clear();
-	printf("+-----------------------------------------------------------+\n");
-	printf("| 1------------------ Trier par nom       ------------------|\n");
-	printf("| 2------------------ Trier par prenom    ------------------|\n");
- 	printf("| 3------------------ Trier par moyenne   ------------------|\n");
-	printf("+-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n");
+	jump(25);
+	printf("                                                                      +-----------------------------------------------------------+\n");
+	printf("                                                                      | 1------------------ Trier par nom       ------------------|\n");
+	printf("                                                                      | 2------------------ Trier par prenom    ------------------|\n");
+ 	printf("                                                                      | 3------------------ Trier par moyenne   ------------------|\n");
+	printf("                                                                      +-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n");
 	printf("Entrez votre choix : ");	
 	saisir(choix, taille);
 	choixFinal = atoi(choix);
@@ -147,10 +150,11 @@ int menuAjouter(void)
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
 	clear();
-	printf("+---------------------------------------------------------------+\n");
-	printf("| 1----------- Ajouter une note à une promotion   --------------|\n");
-	printf("| 2----------- Ajouter une note à tous les élèves --------------|\n");
-	printf("+---------------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	jump(25);
+	printf("                                                                      +---------------------------------------------------------------+\n");
+	printf("                                                                      | 1----------- Ajouter une note à une promotion   --------------|\n");
+	printf("                                                                      | 2----------- Ajouter une note à tous les élèves --------------|\n");
+	printf("                                                                      +---------------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	printf("Entrez votre choix : ");	
 	saisir(choix, taille);
 	choixFinal = atoi(choix);
@@ -171,14 +175,15 @@ int menuMatiere(void)
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
 	clear();
-	printf("+-----------------------------------------------------------+\n");
-	printf("|              			    MATIERE                         |\n");
-	printf("+-----------------------------------------------------------+\n");
-	printf("| 1--------------------- Programmation ---------------------|\n");
-	printf("| 2--------------------- Linux         ---------------------|\n");
-	printf("| 3--------------------- Sécurité      ---------------------|\n");
- 	printf("| 4--------------------- Réseau        ---------------------|\n");
-	printf("+-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	jump(25);
+	printf("                                                                      +-----------------------------------------------------------+\n");
+	printf("                                                                      |              			    MATIERE                         |\n");
+	printf("                                                                      +-----------------------------------------------------------+\n");
+	printf("                                                                      | 1--------------------- Programmation ---------------------|\n");
+	printf("                                                                      | 2--------------------- Linux         ---------------------|\n");
+	printf("                                                                      | 3--------------------- Sécurité      ---------------------|\n");
+ 	printf("                                                                      | 4--------------------- Réseau        ---------------------|\n");
+	printf("                                                                      +-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	printf("Entrez votre choix : ");	
 	saisir(choix, taille);
 	choixFinal = atoi(choix);
@@ -199,10 +204,11 @@ int menuChargerSauvegarder(void)
 	int choixFinal=0;
 	choix =(char*)malloc(taille*sizeof(char));
 	clear();
-	printf("+-----------------------------------------------------------+\n");
-	printf("| 1---------------------- Charger     ----------------------|\n");
-	printf("| 2---------------------- Sauvegarder ----------------------|\n");
-	printf("+-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	jump(25);
+	printf("                                                                      +-----------------------------------------------------------+\n");
+	printf("                                                                      | 1---------------------- Charger     ----------------------|\n");
+	printf("                                                                      | 2---------------------- Sauvegarder ----------------------|\n");
+	printf("                                                                      +-----------------------------------------------------------+\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	printf("Entrez votre choix : ");	
 	saisir(choix, taille);
 	choixFinal = atoi(choix);
@@ -220,7 +226,7 @@ void quitter(eleve** tabEleves, int compteurTab)
 {
 	freeTabEleves(tabEleves,compteurTab);
 	clear();
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	jump(15);
 	printf("                                                           **     **     **   *******   ******** **      **   *******   ** *******  \n"); 
   	printf("                                                          ****   /**    /**  /**////** /**///// /**     /**  **/////** /**/**////** \n");
    	printf("                                                         **//**  /**    /**  /**   /** /**      /**     /** **     //**/**/**   /** \n");

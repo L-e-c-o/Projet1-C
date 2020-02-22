@@ -103,6 +103,13 @@ void clear(void)
     system("clear");
 #endif
 }
+void jump(int n)
+{
+	for(int i=0;i<=n;i++)
+	{
+		printf("\n");
+	}
+}
 double moyenne(eleve *tabEleves)
 {
 	int c=0;
@@ -223,6 +230,7 @@ int delEleve(eleve **tabEleves, int compteurTab)
 		pause();
 		return 1;
 	}
+	listerEleves(tabEleves, compteurTab);
 	printf("Veuillez saisir l'identifiant de l'élève à supprimer : \n");
 	saisir(buff, 3);
 	while(verifchiffre(buff))
@@ -262,6 +270,7 @@ int delEleve(eleve **tabEleves, int compteurTab)
 	tabEleves=realloc(tabEleves,(compteurTab-1)*sizeof(eleve*));
 	free(buff);
 	buff=NULL;
+	clear();
 	return 0;
 } 
 int modif(eleve **tabEleves, int compteurTab)
@@ -281,6 +290,7 @@ int modif(eleve **tabEleves, int compteurTab)
 		pause();
 		return 1;
 	}
+	listerEleves(tabEleves, compteurTab);
 	printf("Veuillez saisir l'identifiant de l'élève : ");
 	saisir(buff, 3);
 	while(verifchiffre(buff))
@@ -440,6 +450,7 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 		pause();
 		return 1;
 	}
+	listerPromo(tabEleves, compteurTab);
 	printf("Veuillez entrer une promotion : \n");
 	saisir(buffPromo, taille);
 	while(verifchiffreEtLettre(buffPromo))

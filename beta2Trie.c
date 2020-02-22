@@ -21,10 +21,6 @@ void listerEleves(eleve **tabEleves, int compteurTab)
 			printf("Aucun élèves enregistré\n");
 			pause();
 		}
-	else
-	{
-		pause();
-	}
 }
 int details(eleve **tabEleves, int compteurTab)
 {
@@ -36,6 +32,7 @@ int details(eleve **tabEleves, int compteurTab)
 	double moyenneGeneral=0;
 	int idDetails=0;
 	char *buff=malloc(3*sizeof(char));
+	listerEleves(tabEleves, compteurTab);
 	printf("Veuillez saisir l'identifiant de l'élève : \n");
 	saisir(buff, 3);
 	while(verifchiffre(buff))
@@ -238,7 +235,10 @@ int listerPromo(eleve **tabEleves, int compteurTab)
 				}
 				printf("+----------------------------+\n\n");		
 		}
-		pause();
+		if(bolean!=1)
+		{ 	
+			pause();
+		}	
 	}
 	for(int i=0;i<compteurEleves;i++)
 	{
@@ -427,6 +427,7 @@ int extract(eleve **tabEleves, int nb ,int compteurTab)
 		pause();
 		return 1;
 	}
+	listerEleves(tabEleves, compteurTab);
 	printf("Veuillez entrer une promotion : \n");
 	saisir(bufferPromo, taille);
 	while(verifchiffreEtLettre(bufferPromo))
