@@ -75,8 +75,10 @@ int main (void)
 			}
 			if(choixMenu==4)
 			{ 	//####Supprimer un élève####
-				delEleve(tabEleves, compteurTab);	
-				compteurTab--;
+				if(delEleve(tabEleves, compteurTab)!=1)
+				{ 	
+					compteurTab--;
+				}
 			}
 			if(choixMenu==5)
 			{ 	//####Modifier un élève####

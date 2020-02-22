@@ -426,6 +426,7 @@ eleve** load(char* filename, eleve **tabEleves, int* ptrCompteurTab)
 			}
 		}
 	}
+fclose(f);
 free(buffer);
 buffer=NULL;
 return tabEleves;

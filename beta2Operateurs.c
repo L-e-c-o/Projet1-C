@@ -92,7 +92,7 @@ void pause(void)
 {
 	char *buff;
 	buff=(char*)malloc(2*sizeof(char));
-	printf("Appuyez sur une touche pour continuer\n");
+	printf("Appuyez sur entrer pour continuer\n");
 	saisir(buff, 2);
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	free(buff);
