@@ -38,8 +38,8 @@ int menuAjouter(void);
 int menuMatiere(void);
 int menuChargerSauvegarder(void);
 void quitter(eleve** tabEleves, int compteurTab);
-void save(char* filename, eleve **tabEleves, int compteurTab);
-eleve** load(char* filename, eleve **tabEleves, int* ptrCompteurTab);
+void save(char* filename, eleve **tabEleves, int compteurTab, int compteurId);
+eleve** load(char* filename, eleve **tabEleves, int* ptrCompteurTab, int* ptrCompteurId);
 //----------------Operateurs---------------------------
 int saisir(char *chaine, int longueur);
 void viderBuffer();

@@ -11,6 +11,8 @@ int main (void)
 	int compteurTab=0;
 	int compteurId=0;
 	int* ptrCompteurTab;
+	int* ptrCompteurId;
+	ptrCompteurId=&compteurId;
 	ptrCompteurTab=&compteurTab;
 	tabEleves=(eleve**)malloc(sizeof(eleve*));
 
@@ -108,12 +110,12 @@ int main (void)
 				if(choixSousMenu2==1)
 				{
 					// Charger
-					tabEleves=load("saved.txt", tabEleves, ptrCompteurTab);
+					tabEleves=load("saved.txt", tabEleves, ptrCompteurTab, ptrCompteurId);
 				}
 				if(choixSousMenu2==2)
 				{
 					// Sauvegarder
-					save("saved.txt", tabEleves, compteurTab);
+					save("saved.txt", tabEleves, compteurTab, compteurId);
 				}
 			}	
 			if(choixMenu==9)

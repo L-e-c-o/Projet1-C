@@ -227,19 +227,19 @@ void quitter(eleve** tabEleves, int compteurTab)
 	freeTabEleves(tabEleves,compteurTab);
 	clear();
 	jump(15);
-	printf("                                                           **     **     **   *******   ******** **      **   *******   ** *******  \n"); 
-  	printf("                                                          ****   /**    /**  /**////** /**///// /**     /**  **/////** /**/**////** \n");
-   	printf("                                                         **//**  /**    /**  /**   /** /**      /**     /** **     //**/**/**   /** \n");
- 	printf("                                                        **  //** /**    /**  /*******  /******* //**    ** /**      /**/**/*******  \n");
-	printf("                                                       **********/**    /**  /**///**  /**////   //**  **  /**      /**/**/**///**  \n");
-	printf("                                                      /**//////**/**    /**  /**  //** /**        //****   //**     ** /**/**  //** \n");
-	printf("                                                     /**      /**//*******   /**   //**/********   //**     //*******  /**/**   //**\n");
-	printf("                                                     //       //  ///////    //     // ////////     //       ///////   // //     // \n");
+	printf("                                                           **     **     **     *******   ******** **      **   *******   ** *******  \n"); 
+  	printf("                                                          ****   /**    /**    /**////** /**///// /**     /**  **/////** /**/**////** \n");
+   	printf("                                                         **//**  /**    /**    /**   /** /**      /**     /** **     //**/**/**   /** \n");
+ 	printf("                                                        **  //** /**    /**    /*******  /******* //**    ** /**      /**/**/*******  \n");
+	printf("                                                       **********/**    /**    /**///**  /**////   //**  **  /**      /**/**/**///**  \n");
+	printf("                                                      /**//////**/**    /**    /**  //** /**        //****   //**     ** /**/**  //** \n");
+	printf("                                                     /**      /**//*******     /**   //**/********   //**     //*******  /**/**   //**\n");
+	printf("                                                     //       //  ///////      //     // ////////     //       ///////   // //     // \n");
 	pause();
 	clear();
 	exit(0);
 }
-void save(char* filename, eleve **tabEleves, int compteurTab)
+void save(char* filename, eleve **tabEleves, int compteurTab, int compteurId)
 {
 	int i=0;
 	int j=0;
@@ -251,6 +251,8 @@ void save(char* filename, eleve **tabEleves, int compteurTab)
 		return;
 	}
 	fprintf(f,"%d",compteurTab);
+	fputs("\n",f);
+	fprintf(f,"%d",compteurId);
 	fputs("\n",f);
 	for(i=0;i<compteurTab;i++)
 	{ 	
@@ -326,7 +328,7 @@ void save(char* filename, eleve **tabEleves, int compteurTab)
 	}
 	fclose(f);	
 }
-eleve** load(char* filename, eleve **tabEleves, int* ptrCompteurTab)
+eleve** load(char* filename, eleve **tabEleves, int* ptrCompteurTab, int* ptrCompteurId)
 {
 	int i=0;
 	int compteurTab=*ptrCompteurTab;
@@ -348,6 +350,8 @@ eleve** load(char* filename, eleve **tabEleves, int* ptrCompteurTab)
 	*ptrCompteurTab=atoi(buffer);
 	compteurTab=*ptrCompteurTab;
 	tabEleves=(eleve**)malloc(compteurTab*sizeof(eleve*));
+	fgets(buffer,500,f);
+	*ptrCompteurId=atoi(buffer);
 	for(i=0;i<compteurTab;i++)
 	{
 		fgets(buffer,500,f);
