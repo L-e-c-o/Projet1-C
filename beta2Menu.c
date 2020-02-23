@@ -177,7 +177,7 @@ int menuMatiere(void)
 	clear();
 	jump(25);
 	printf("                                                                      +-----------------------------------------------------------+\n");
-	printf("                                                                      |              			    MATIERE                         |\n");
+	printf("                                                                      |                           MATIERES                        |\n");
 	printf("                                                                      +-----------------------------------------------------------+\n");
 	printf("                                                                      | 1--------------------- Programmation ---------------------|\n");
 	printf("                                                                      | 2--------------------- Linux         ---------------------|\n");
@@ -308,7 +308,7 @@ void save(char* filename, eleve **tabEleves, int compteurTab)
 		fputs(":",f);
 	}
 	fprintf(f,"%d",tabEleves[i]->matieres.nbNoteReseau);
-	fputs(";",f);
+	fputs(":",f);
 	if(tabEleves[i]->matieres.nbNoteReseau!=0)
 	{
 		for(j=0;j<tabEleves[i]->matieres.nbNoteReseau;j++)
@@ -437,3 +437,5 @@ free(buffer);
 buffer=NULL;
 return tabEleves;
 }
+
+

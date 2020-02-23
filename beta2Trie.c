@@ -8,7 +8,6 @@ void listerEleves(eleve **tabEleves, int compteurTab)
 		{
 			clear();
 		}	
-		printf("%d\n",compteurTab );
 		printf("+----------------------------+\n");
 		printf("  identifiant : %d           \n", tabEleves[i]->id);
 		printf("  nom :         %s           \n", tabEleves[i]->nom);
@@ -32,6 +31,12 @@ int details(eleve **tabEleves, int compteurTab)
 	double moyenneGeneral=0;
 	int idDetails=0;
 	char *buff=malloc(3*sizeof(char));
+	if(compteurTab==0)
+	{
+		printf("Aucun élève enregistré.\n");
+		pause();
+		return 1;
+	}
 	listerEleves(tabEleves, compteurTab);
 	printf("Veuillez saisir l'identifiant de l'élève : \n");
 	saisir(buff, 3);
@@ -173,8 +178,7 @@ int listerPromo(eleve **tabEleves, int compteurTab)
 	int c;
 	int nb;
 	double moyenneF;
-	int compteurEleves;
-	eleve **tabPromo=malloc(sizeof(eleve*));
+	int nbPromo;
 	if(compteurTab==0)
 	{
 		printf("Aucune promotion \n");
@@ -183,12 +187,13 @@ int listerPromo(eleve **tabEleves, int compteurTab)
 	}
 	else
 	{ 
+		eleve **tabPromo=malloc(sizeof(eleve*));
 		tabPromo[0]=tabEleves[0];
-		compteurEleves=1;
+		nbPromo=1;
 		for(int i=1;i<compteurTab;i++)
 		{
 			c=0;
-			for (int j=0;j<compteurEleves;j++)
+			for (int j=0;j<nbPromo;j++)
 			{
 				if(strcmp(tabEleves[i]->promotion, tabPromo[j]->promotion)==0)
 				{
@@ -197,12 +202,12 @@ int listerPromo(eleve **tabEleves, int compteurTab)
 			}
 			if(c==0)
 			{
-				compteurEleves++;
-				tabPromo=realloc(tabPromo,compteurEleves*sizeof(eleve*));
-				tabPromo[i]=tabEleves[i];
+				nbPromo++;
+				tabPromo=realloc(tabPromo,nbPromo*sizeof(eleve*));
+				tabPromo[nbPromo-1]=tabEleves[i];
 			}
 		}
-		for(int i=0;i<compteurEleves;i++)
+		for(int i=0;i<nbPromo;i++)
 		{
 			nb=0;
 			moyenneF=0;
@@ -213,7 +218,7 @@ int listerPromo(eleve **tabEleves, int compteurTab)
 					nb++;
 					if(tabEleves[i]->matieres.nbNoteProg!=0||tabEleves[i]->matieres.nbNoteLinux!=0||tabEleves[i]->matieres.nbNoteSecu!=0||tabEleves[i]->matieres.nbNoteReseau!=0)
 					{
-						moyenneF=moyenneF+moyenne(tabEleves[i]);
+						moyenneF=moyenneF+moyenne(tabEleves[j]);
 					}
 				}
 			}
@@ -239,14 +244,14 @@ int listerPromo(eleve **tabEleves, int compteurTab)
 		{ 	
 			pause();
 		}	
+		for(int i=0;i<nbPromo;i++)
+		{
+			tabPromo[i]=NULL;
+			free(tabPromo[i]);
+		}
+		*tabPromo=NULL;
+		free(*tabPromo);
 	}
-	for(int i=0;i<compteurEleves;i++)
-	{
-		tabPromo[i]=NULL;
-		free(tabPromo[i]);
-	}
-	*tabPromo=NULL;
-	free(*tabPromo);
 	return 0;
 }
 int trie(eleve **tabEleves, int nb, int compteurTab)

@@ -316,7 +316,7 @@ int modif(eleve **tabEleves, int compteurTab)
 	clear();
 	printf("+-----------------------------------------+\n");
 	printf("nom actuel : %s\n",tabEleves[i]->nom);
-	printf("Entrer le nouveau nom de l'élève (entrée = defaut) : ");
+	printf("Entrer le nouveau nom de l'élève (entrée = actuel) : ");
 	saisir(bufferNom, taille);
 	while(verifLettre(bufferNom))
 	{
@@ -330,7 +330,7 @@ int modif(eleve **tabEleves, int compteurTab)
 	}
 	printf("+-----------------------------------------+\n");
 	printf("Prenom actuel : %s\n",tabEleves[i]->prenom);
-	printf("Entrer le nouveau prenom de l'élève (entrée = defaut) : ");
+	printf("Entrer le nouveau prenom de l'élève (entrée = actuel) : ");
 	saisir(bufferPrenom, taille);
 	while(verifLettre(bufferPrenom))
 	{
@@ -344,7 +344,7 @@ int modif(eleve **tabEleves, int compteurTab)
 	}
 	printf("+-----------------------------------------+\n");
 	printf("Promotion actuelle : %s\n",tabEleves[i]->promotion);
-	printf("Entrer la nouvelle promotion de l'élève (entrée = defaut) : ");
+	printf("Entrer la nouvelle promotion de l'élève (entrée = actuelle) : ");
 	saisir(bufferPromotion, taille);
 	printf("+-----------------------------------------+\n");
 	while(verifchiffreEtLettre(bufferPromotion))
@@ -363,14 +363,17 @@ int modif(eleve **tabEleves, int compteurTab)
 		for(int j=0;j<tabEleves[i]->matieres.nbNoteProg;j++)
 		{
 			printf("note %d : %.2lf\n",j+1,tabEleves[i]->matieres.programmation[j]);
-			printf("Entrer la nouvelle note de l'élève (entrée = defaut) : ");
+			printf("Entrer la nouvelle note de l'élève (entrée = actuelle) : ");
 			saisir(bufferNotes,7);
 			while(verifchiffre(bufferNotes))
 			{
 			printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 			saisir(bufferNotes, 7);
 			}
-			tabEleves[i]->matieres.programmation[j]=atof(bufferNotes);
+			if(bufferNotes[0]!='\0')
+			{	 
+				tabEleves[i]->matieres.programmation[j]=atof(bufferNotes);
+			}
 		}
 		printf("+-----------------------------------------+\n");
 	}
@@ -380,14 +383,17 @@ int modif(eleve **tabEleves, int compteurTab)
 		for(int j=0;j<tabEleves[i]->matieres.nbNoteLinux;j++)
 		{
 			printf("note %d : %.2lf\n",j+1,tabEleves[i]->matieres.Linux[j]);
-			printf("Entrer la nouvelle note de l'élève (entrée = defaut) : ");
+			printf("Entrer la nouvelle note de l'élève (entrée = actuelle) : ");
 			saisir(bufferNotes,7);
 			while(verifchiffre(bufferNotes))
 			{
 			printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 			saisir(bufferNotes, 7);
 			}
+			if(bufferNotes[0]!='\0')
+			{ 	
 			tabEleves[i]->matieres.Linux[j]=atof(bufferNotes);
+			}
 		}
 		printf("+-----------------------------------------+\n");
 	}
@@ -397,14 +403,17 @@ int modif(eleve **tabEleves, int compteurTab)
 		for(int j=0;j<tabEleves[i]->matieres.nbNoteSecu;j++)
 		{
 			printf("note %d : %.2lf\n",j+1,tabEleves[i]->matieres.secu[j]);
-			printf("Entrer la nouvelle note de l'élève (entrée = defaut) : ");
+			printf("Entrer la nouvelle note de l'élève (entrée = actuelle) : ");
 			saisir(bufferNotes,7);
 			while(verifchiffre(bufferNotes))
 			{
 			printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 			saisir(bufferNotes, 7);
 			}
+			if(bufferNotes[0]!='\0')
+			{ 	
 			tabEleves[i]->matieres.secu[j]=atof(bufferNotes);
+			}
 		}
 		printf("+-----------------------------------------+\n");
 	}
@@ -414,14 +423,17 @@ int modif(eleve **tabEleves, int compteurTab)
 		for(int j=0;j<tabEleves[i]->matieres.nbNoteReseau;j++)
 		{
 			printf("note %d : %.2lf\n",j+1,tabEleves[i]->matieres.reseau[j]);
-			printf("Entrer la nouvelle note de l'élève (entrée = defaut) : ");
+			printf("Entrer la nouvelle note de l'élève (entrée = actuelle) : ");
 			saisir(bufferNotes,7);
 			while(verifchiffre(bufferNotes))
 			{
 			printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 			saisir(bufferNotes, 7);
 			}
+			if(bufferNotes[0]!='\0')
+			{ 	
 			tabEleves[i]->matieres.reseau[j]=atof(bufferNotes);
+			}
 		}
 		printf("+-----------------------------------------+\n");
 	}
@@ -473,8 +485,6 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 			{
 				if(strcmp(tabEleves[i]->promotion, buffPromo)==0)
 				{ 	
-					tabEleves[i]->matieres.nbNoteProg++;
-					tabEleves[i]->matieres.programmation=realloc(tabEleves[i]->matieres.programmation,tabEleves[i]->matieres.nbNoteProg*sizeof(float));
 					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -482,13 +492,15 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 					printf("Veuillez saisir la nouvelle note : ");
 					saisir(bufferNotes,7);
 					printf("+-----------------------------------------+\n");
-					pause();
-					while(verifchiffre(bufferNotes))
+					while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0' || atof(bufferNotes) > 20)
 					{
 						printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 						saisir(bufferNotes, 7);
 					}
+					tabEleves[i]->matieres.nbNoteProg++;
+					tabEleves[i]->matieres.programmation=realloc(tabEleves[i]->matieres.programmation,tabEleves[i]->matieres.nbNoteProg*sizeof(float));
 					tabEleves[i]->matieres.programmation[tabEleves[i]->matieres.nbNoteProg-1]=atof(bufferNotes);
+					pause();
 				}
 			}
 			free(bufferNotes);
@@ -503,8 +515,6 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 			{
 				if(strcmp(tabEleves[i]->promotion, buffPromo)==0)
 				{ 	
-					tabEleves[i]->matieres.nbNoteLinux++;
-					tabEleves[i]->matieres.Linux=realloc(tabEleves[i]->matieres.Linux,tabEleves[i]->matieres.nbNoteLinux*sizeof(float));
 					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -512,13 +522,15 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 					printf("Veuillez saisir la nouvelle note : ");
 					saisir(bufferNotes,7);
 					printf("+-----------------------------------------+\n");
-					pause();
-					while(verifchiffre(bufferNotes))
+					while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0'|| atof(bufferNotes) > 20)
 					{
 						printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 						saisir(bufferNotes,7);
 					}
+					tabEleves[i]->matieres.nbNoteLinux++;
+					tabEleves[i]->matieres.Linux=realloc(tabEleves[i]->matieres.Linux,tabEleves[i]->matieres.nbNoteLinux*sizeof(float));				
 					tabEleves[i]->matieres.Linux[tabEleves[i]->matieres.nbNoteLinux-1]=atof(bufferNotes);
+					pause();				
 				}
 			}
 			free(bufferNotes);
@@ -533,8 +545,6 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 			{
 				if(strcmp(tabEleves[i]->promotion, buffPromo)==0)
 				{ 	
-					tabEleves[i]->matieres.nbNoteSecu++;
-					tabEleves[i]->matieres.secu=realloc(tabEleves[i]->matieres.secu,tabEleves[i]->matieres.nbNoteSecu*sizeof(float));
 					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -542,13 +552,15 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 					printf("Veuillez saisir la nouvelle note : ");
 					saisir(bufferNotes,7);
 					printf("+-----------------------------------------+\n");
-					pause();
-					while(verifchiffre(bufferNotes))
+					while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0'|| atof(bufferNotes) > 20)
 					{
 						printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 						saisir(bufferNotes,7);
 					}
+					tabEleves[i]->matieres.nbNoteSecu++;
+					tabEleves[i]->matieres.secu=realloc(tabEleves[i]->matieres.secu,tabEleves[i]->matieres.nbNoteSecu*sizeof(float));			
 					tabEleves[i]->matieres.secu[tabEleves[i]->matieres.nbNoteSecu-1]=atof(bufferNotes);
+					pause();
 				}
 			}
 			free(bufferNotes);
@@ -563,8 +575,6 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 			{
 				if(strcmp(tabEleves[i]->promotion, buffPromo)==0)
 				{ 	
-					tabEleves[i]->matieres.nbNoteReseau++;
-					tabEleves[i]->matieres.reseau=realloc(tabEleves[i]->matieres.reseau,tabEleves[i]->matieres.nbNoteReseau*sizeof(float));
 					clear();
 					printf("+-----------------------------------------+\n");
 					printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -572,13 +582,16 @@ int ajouterNote(eleve **tabEleves, int compteurTab)
 					printf("Veuillez saisir la nouvelle note : ");
 					saisir(bufferNotes,7);
 					printf("+-----------------------------------------+\n");
-					pause();
-					while(verifchiffre(bufferNotes))
+			
+					while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0'|| atof(bufferNotes) > 20)
 					{
 						printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 						saisir(bufferNotes,7);
 					}
+					tabEleves[i]->matieres.nbNoteReseau++;
+					tabEleves[i]->matieres.reseau=realloc(tabEleves[i]->matieres.reseau,tabEleves[i]->matieres.nbNoteReseau*sizeof(float));
 					tabEleves[i]->matieres.reseau[tabEleves[i]->matieres.nbNoteReseau-1]=atof(bufferNotes);
+					pause();				
 				}
 			}
 			free(bufferNotes);
@@ -596,14 +609,17 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 	int choix=0;
 	char *bufferNotes=malloc(4*sizeof(char));
 	choix=menuMatiere();
+	if(compteurTab==0)
+	{
+		printf("Aucun élève enregistré.\n");
+		return 1;
+	}
 	switch (choix)
 	{
 		case 1:
 		{	//Programmatioin
 			for(i=0;i<compteurTab;i++)
 			{	
-				tabEleves[i]->matieres.nbNoteProg++;
-				tabEleves[i]->matieres.programmation=realloc(tabEleves[i]->matieres.programmation,tabEleves[i]->matieres.nbNoteProg*sizeof(float));
 				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -611,13 +627,15 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 				printf("Veuillez saisir la nouvelle note : ");
 				saisir(bufferNotes,7);
 				printf("+-----------------------------------------+\n");
-				pause();
-				while(verifchiffre(bufferNotes))
+				while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0'|| atof(bufferNotes) > 20)
 				{
 					printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 					saisir(bufferNotes,7);
 				}
+				tabEleves[i]->matieres.nbNoteProg++;
+				tabEleves[i]->matieres.programmation=realloc(tabEleves[i]->matieres.programmation,tabEleves[i]->matieres.nbNoteProg*sizeof(float));
 				tabEleves[i]->matieres.programmation[tabEleves[i]->matieres.nbNoteProg-1]=atof(bufferNotes);
+				pause();
 			}
 			free(bufferNotes);
 			bufferNotes=NULL;
@@ -627,8 +645,6 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 		{	//Linux
 			for(i=0;i<compteurTab;i++)
 			{	
-				tabEleves[i]->matieres.nbNoteLinux++;
-				tabEleves[i]->matieres.Linux=realloc(tabEleves[i]->matieres.Linux,tabEleves[i]->matieres.nbNoteLinux*sizeof(float));
 				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -636,13 +652,15 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 				printf("Veuillez saisir la nouvelle note : ");
 				saisir(bufferNotes,7);
 				printf("+-----------------------------------------+\n");
-				pause();
-				while(verifchiffre(bufferNotes))
+				while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0'|| atof(bufferNotes) > 20)
 				{
 					printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 					saisir(bufferNotes,7);
 				}
+				tabEleves[i]->matieres.nbNoteLinux++;
+				tabEleves[i]->matieres.Linux=realloc(tabEleves[i]->matieres.Linux,tabEleves[i]->matieres.nbNoteLinux*sizeof(float));
 				tabEleves[i]->matieres.Linux[tabEleves[i]->matieres.nbNoteLinux-1]=atof(bufferNotes);
+				pause();
 			}
 			free(bufferNotes);
 			bufferNotes=NULL;
@@ -652,8 +670,6 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 		{	//Secu
 			for(i=0;i<compteurTab;i++)
 			{	
-				tabEleves[i]->matieres.nbNoteSecu++;
-				tabEleves[i]->matieres.secu=realloc(tabEleves[i]->matieres.secu,tabEleves[i]->matieres.nbNoteSecu*sizeof(float));
 				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -661,13 +677,15 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 				printf("Veuillez saisir la nouvelle note : ");
 				saisir(bufferNotes,7);
 				printf("+-----------------------------------------+\n");
-				pause();
-				while(verifchiffre(bufferNotes))
+				while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0'|| atof(bufferNotes) > 20)
 				{
 					printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 					saisir(bufferNotes,7);
 				}
+				tabEleves[i]->matieres.nbNoteSecu++;
+				tabEleves[i]->matieres.secu=realloc(tabEleves[i]->matieres.secu,tabEleves[i]->matieres.nbNoteSecu*sizeof(float));
 				tabEleves[i]->matieres.secu[tabEleves[i]->matieres.nbNoteSecu-1]=atoi(bufferNotes);
+				pause();
 			}
 			free(bufferNotes);
 			bufferNotes=NULL;
@@ -677,8 +695,6 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 		{	//Reseau
 			for(i=0;i<compteurTab;i++)
 			{	
-				tabEleves[i]->matieres.nbNoteReseau++;
-				tabEleves[i]->matieres.reseau=realloc(tabEleves[i]->matieres.reseau,tabEleves[i]->matieres.nbNoteReseau*sizeof(float));
 				clear();
 				printf("+-----------------------------------------+\n");
 				printf("Nom de l'eleve : %s\n",tabEleves[i]->nom);
@@ -686,13 +702,15 @@ int ajouterNoteTlm(eleve **tabEleves, int compteurTab)
 				printf("Veuillez saisir la nouvelle note : ");
 				saisir(bufferNotes,7);
 				printf("+-----------------------------------------+\n");
-				pause();
-				while(verifchiffre(bufferNotes))
+				while(verifchiffre(bufferNotes) || bufferNotes[0] == '\0'|| atof(bufferNotes) > 20)
 				{
 					printf("Erreur de saisie, veuillez saisir une note entre 1 et 20 : \n" );
 					saisir(bufferNotes,7);
 				}
+				tabEleves[i]->matieres.nbNoteReseau++;
+				tabEleves[i]->matieres.reseau=realloc(tabEleves[i]->matieres.reseau,tabEleves[i]->matieres.nbNoteReseau*sizeof(float));
 				tabEleves[i]->matieres.reseau[tabEleves[i]->matieres.nbNoteReseau-1]=atof(bufferNotes);
+				pause();
 			}
 			free(bufferNotes);
 			bufferNotes=NULL;
